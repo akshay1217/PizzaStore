@@ -9,7 +9,7 @@ import Header from "./PizzaStore/Pages/Header";
 function App() {
   return (
     <Router>
-      {/* <Header /> */}
+      <Header />
         <Route path="/checkout" exact>
           <Checkout />
         </Route>
