@@ -4,11 +4,13 @@ import { Items } from "../fixtures/Items";
 import "./product.css";
 import { useState, useEffect, useContext, createContext } from "react";
 import Checkout from "./Checkout"
+import  {CartContext} from './../../App';
 
 const Product = () => {
   let { categoryId } = useParams();
   const [cart, setCart] = useState([]);
-  const UserContext = createContext();
+
+  const {totalItemInCart, setTotalItemInCart} = useContext(CartContext)
 
   const productItemIds = CategoryItems.filter(
     (x) => x.categoryId === categoryId
@@ -17,7 +19,6 @@ const Product = () => {
   });
 
   const ProdItems = Items.filter((item) => productItemIds.includes(item.id));
-  const [totalItemInCart, setTotalItemInCart] = useState(0);
   let total = 0;
 
   const addItemtoCart = (itemName) => {
