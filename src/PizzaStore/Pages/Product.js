@@ -10,7 +10,6 @@ const Product = () => {
   const [cart, setCart] = useState([]);
   const UserContext = createContext();
 
-  // console.log("In product......")
   const productItemIds = CategoryItems.filter(
     (x) => x.categoryId === categoryId
   ).map((item) => {
@@ -31,9 +30,7 @@ const Product = () => {
       cart.push({ name: itemName, qty: 1 });
     } else {
       cart.map((item) => {
-        // console.log("inside");
         if (item.name === itemName) {
-          // console.log("Clicked Item", item.name);
           item.qty += 1;
         }
       });
@@ -45,19 +42,10 @@ const Product = () => {
 
 
   useEffect(() => {
+    
+    let result = cart.reduce((first, last) => first + last.qty, 0)
+ // result = cart.map(item => item.qty).reduce((a, b) => a + b, 0);
 
-    let result = 0;
-    cart.map((item)=> { 
-      result = result + item.qty;
-       }
-    )
- 
-      //  let result = cart.reduce((first, last) => first.qty + last.qty, 0)
-      //  var result = cart.map(item => item.qty).reduce((a, b) => a + b);
-
-    //    let result = cart.reduce(function(_this, val) {
-    //     return _this + val.qty
-    // }, 0);
 
  console.log("From use Effect",result);
 
@@ -66,14 +54,11 @@ const Product = () => {
 //  </UserContext.Provider>
 
  setTotalItemInCart(result)
-//  console.log("Total Qty in Cart", totalItemInCart);
 
   }, [cart]);
 
-
   return (
     <>
-    {/* {console.log("total Qty = ", totalItemInCart)} */}
       {ProdItems.map((item, index) => {
         return (
           <>
