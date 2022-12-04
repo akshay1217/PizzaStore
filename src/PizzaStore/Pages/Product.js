@@ -10,7 +10,7 @@ const Product = () => {
   let { categoryId } = useParams();
   const [cart, setCart] = useState([]);
 
-  const {totalItemInCart, setTotalItemInCart} = useContext(CartContext)
+  const {totalItemInCart, setTotalItemInCart, cartItems, setCartItems} = useContext(CartContext)
 
   const productItemIds = CategoryItems.filter(
     (x) => x.categoryId === categoryId
@@ -22,41 +22,34 @@ const Product = () => {
   let total = 0;
 
   const addItemtoCart = (itemName) => {
-    if (cart.length === 0) {
-      setCart([...cart, { name: itemName, qty: 1 }]);
+    if (cartItems.length === 0) {
+      setCartItems([...cartItems, { name: itemName, qty: 1 }]);
       return;
     }
 
-    if (cart.filter((item) => item.name === itemName).length <= 0) {
-      cart.push({ name: itemName, qty: 1 });
+    if (cartItems.filter((item) => item.name === itemName).length <= 0) {
+      cartItems.push({ name: itemName, qty: 1 });
     } else {
-      cart.map((item) => {
+      cartItems.map((item) => {
         if (item.name === itemName) {
           item.qty += 1;
         }
       });
     }
 
-    setCart([...cart]);
+    setCartItems([...cartItems]);
 
   };
 
 
   useEffect(() => {
     
-    let result = cart.reduce((first, last) => first + last.qty, 0)
- // result = cart.map(item => item.qty).reduce((a, b) => a + b, 0);
+    let result = cartItems.reduce((first, last) => first + last.qty, 0)
+    // result = cartItems.map(item => item.qty).reduce((a, b) => a + b, 0);
 
+    setTotalItemInCart(result)
 
- console.log("From use Effect",result);
-
-//  <UserContext.Provider value={result}>
-//    <Checkout total={result} />
-//  </UserContext.Provider>
-
- setTotalItemInCart(result)
-
-  }, [cart]);
+  }, [cartItems]);
 
   return (
     <>
@@ -70,7 +63,7 @@ const Product = () => {
         );
       })}
       
-      {cart.map((item) => {
+      {cartItems.map((item) => {
 
         return (
           <>

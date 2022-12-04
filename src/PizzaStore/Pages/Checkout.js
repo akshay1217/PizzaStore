@@ -1,10 +1,22 @@
 import { useContext } from "react";
+import  {CartContext} from './../../App';
 
 const Checkout = (props) => {
+  const { totalItemInCart, cartItems } = useContext(CartContext);
 
-    const total = useContext(props.total);
-
-    console.log("Checkout page total = ", total);
-}
+  return (
+    <>
+      {cartItems.map((item) => {
+        return (
+          <>
+            <div>{item.name} : </div>
+            <div>{item.qty}</div> <br />
+          </>
+        );
+      })}
+      <div> Total Items : {totalItemInCart} </div>
+    </>
+  );
+};
 
 export default Checkout;

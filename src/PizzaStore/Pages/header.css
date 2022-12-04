@@ -3,4 +3,5 @@
     width: 100px;
     border : 1px solid green;
     align-items: center;
+    display: inline-block;
 }

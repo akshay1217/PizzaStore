@@ -11,13 +11,15 @@ export const CartContext = createContext();
 
 function App() {
   const [totalItemInCart, setTotalItemInCart] = useState(0);
-
+  const [cartItems, setCartItems] = useState([]);
 
   return (
     <Router>
       <CartContext.Provider value={{
         totalItemInCart,
-        setTotalItemInCart
+        setTotalItemInCart,
+        cartItems, 
+        setCartItems,
       }}>
       <Header />
         <Route path="/checkout" exact>

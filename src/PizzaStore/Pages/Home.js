@@ -3,14 +3,9 @@ import {Category} from "../fixtures/Category";
 import "./home.css"
 
 const Home = () => {
-
-
-    const history = useHistory();
-    
-
-   const traversePage = (categotyId) => {
-       history.push(`/product/${categotyId}`);
-    
+    const history = useHistory();  
+    const traversePage = (categotyId) => {
+       history.push(`/product/${categotyId}`); 
    }
 
     return (

@@ -6,11 +6,15 @@ import  {CartContext} from './../../App';
 
 
 const Header = () => {
-    const {totalItemInCart} = useContext(CartContext)
+    const {totalItemInCart} = useContext(CartContext);
+    const history = useHistory();  
+    const traversePage = () => {
+       history.push(`/checkout`); 
+   }
 
     return (
         <>
-            <div className="header"> Total Item : {totalItemInCart}</div>
+            <div className="header" onClick={()=>traversePage()}> Total Items : {totalItemInCart}</div>
 
         </>
     )
