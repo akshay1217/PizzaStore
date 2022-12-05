@@ -2,15 +2,17 @@ import { useParams } from "react-router-dom";
 import { CategoryItems } from "../fixtures/Category-item";
 import { Items } from "../fixtures/Items";
 import "./product.css";
-import { useState, useEffect, useContext, createContext } from "react";
-import Checkout from "./Checkout"
+import { useState, useEffect, useContext } from "react";
 import  {CartContext} from './../../App';
+import "./common.css";
 
 const Product = () => {
   let { categoryId } = useParams();
-  const [cart, setCart] = useState([]);
-
-  const {totalItemInCart, setTotalItemInCart, cartItems, setCartItems} = useContext(CartContext)
+  const { totalItemInCart, 
+        setTotalItemInCart, 
+        cartItems, 
+        setCartItems, 
+        theme } = useContext(CartContext)
 
   const productItemIds = CategoryItems.filter(
     (x) => x.categoryId === categoryId
@@ -43,10 +45,8 @@ const Product = () => {
 
 
   useEffect(() => {
-    
     let result = cartItems.reduce((first, last) => first + last.qty, 0)
     // result = cartItems.map(item => item.qty).reduce((a, b) => a + b, 0);
-
     setTotalItemInCart(result)
 
   }, [cartItems]);
@@ -55,11 +55,11 @@ const Product = () => {
     <>
       {ProdItems.map((item, index) => {
         return (
-          <>
+          <div className={theme}>
             <br />
             <div className="productItem"> {item.name}</div>
             <div onClick={() => addItemtoCart(item.name)}> + </div>
-          </>
+          </div>
         );
       })}
       

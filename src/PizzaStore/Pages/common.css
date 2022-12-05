@@ -1,0 +1,16 @@
+.light {
+    background-color: white;
+    color: black
+}
+
+.dark  { 
+    background-color: black;
+    color: white
+}
+
+.light > div { 
+    background-color: white;
+}
+.dark > div {
+    background-color: black;
+}

@@ -12,6 +12,7 @@ export const CartContext = createContext();
 function App() {
   const [totalItemInCart, setTotalItemInCart] = useState(0);
   const [cartItems, setCartItems] = useState([]);
+  const [theme, setTheme] = useState("light");
 
   return (
     <Router>
@@ -20,6 +21,8 @@ function App() {
         setTotalItemInCart,
         cartItems, 
         setCartItems,
+        theme, 
+        setTheme,
       }}>
       <Header />
         <Route path="/checkout" exact>
